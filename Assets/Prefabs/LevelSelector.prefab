@@ -39,6 +39,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6670473111184812980}
     m_Modifications:
+    - target: {fileID: -6370839129184313555, guid: cf37b75ccc7140e46947d2e6f2d2c882, type: 3}
+      propertyPath: levelSelector
+      value: 
+      objectReference: {fileID: 6670473111184812980}
     - target: {fileID: 3730853621985372494, guid: cf37b75ccc7140e46947d2e6f2d2c882, type: 3}
       propertyPath: m_Name
       value: Trigger
@@ -105,6 +109,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6670473111184812980}
     m_Modifications:
+    - target: {fileID: -6370839129184313555, guid: cf37b75ccc7140e46947d2e6f2d2c882, type: 3}
+      propertyPath: levelSelector
+      value: 
+      objectReference: {fileID: 6670473111184812980}
     - target: {fileID: 3730853621985372494, guid: cf37b75ccc7140e46947d2e6f2d2c882, type: 3}
       propertyPath: m_Name
       value: Trigger

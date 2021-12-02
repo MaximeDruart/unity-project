@@ -5,7 +5,7 @@ public class TriggerAnim : MonoBehaviour
 {
 
 
-    [SerializeField] Transform levelSelector;
+    public Transform levelSelector;
 
     Vector3 startPosition;
     // Start is called before the first frame update
@@ -63,8 +63,9 @@ public class TriggerAnim : MonoBehaviour
                 char choice = tag[tag.Length - 1];
                 // load the scene 'Scene{activeSceneIndex}-{choice}'
                 SceneController.Instance.GoToScene(choice);
-
                 isHidden = true;
+
+
             }
         }
         else isHovering = false;
@@ -74,7 +75,11 @@ public class TriggerAnim : MonoBehaviour
 
     void FixedUpdate()
     {
-        transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one * (isHidden ? 0f : (isHovering ? 3f : 1f)), 0.1f);
+        if (isHidden)
+        {
+            levelSelector.transform.localScale = Vector3.Lerp(levelSelector.transform.localScale, Vector3.zero, 0.1f);
+        }
+        transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one * (isHovering ? 3f : 1f), 0.1f);
 
     }
 }

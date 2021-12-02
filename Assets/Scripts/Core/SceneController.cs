@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class SceneController : Singleton<SceneController>
 {
 
-    public int activeSceneIndex = 1;
+    int activeSceneIndex = 1;
 
     // Start is called before the first frame update
 
