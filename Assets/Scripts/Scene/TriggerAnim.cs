@@ -1,15 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 
 public class TriggerAnim : MonoBehaviour
 {
 
+
+    [SerializeField] Transform levelSelector;
+
     Vector3 startPosition;
     // Start is called before the first frame update
     bool isHovering = false;
+    bool isHidden = false;
+
     Collider objectCollider;
     int id;
     void Start()
@@ -23,11 +25,16 @@ public class TriggerAnim : MonoBehaviour
     }
 
 
-    void Float()
+    void FloatAnim()
     {
         Vector3 position = transform.localPosition;
         position.y = startPosition.y + Mathf.Sin(Time.time * 5) * 0.5f;
         transform.localPosition = position;
+    }
+
+    void Hide()
+    {
+
     }
 
 
@@ -35,20 +42,29 @@ public class TriggerAnim : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Float();
+        FloatAnim();
 
-
+        // send ray from the center of cam to where you're looking at
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
         RaycastHit hit;
+
         if (Physics.Raycast(ray, out hit))
         {
+
+            // assign scriptableobject to game object and get data thtough there
+            // hit.collider.gameObject.GetComponent<TriggerData>().choiceIndex;
+            // check if hit item is current game object
             bool objectIsHit = hit.collider.GetInstanceID() == objectCollider.GetInstanceID();
             isHovering = objectIsHit;
 
             if (objectIsHit && Input.GetButtonDown("Fire1"))
             {
+                // get the tag's last letter (either trigger-1 or trigger-2 so 1 or 2)
                 char choice = tag[tag.Length - 1];
+                // load the scene 'Scene{activeSceneIndex}-{choice}'
                 SceneController.Instance.GoToScene(choice);
+
+                isHidden = true;
             }
         }
         else isHovering = false;
@@ -58,7 +74,7 @@ public class TriggerAnim : MonoBehaviour
 
     void FixedUpdate()
     {
-        transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one * (isHovering ? 3f : 1f), 0.1f);
+        transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one * (isHidden ? 0f : (isHovering ? 3f : 1f)), 0.1f);
 
     }
 }

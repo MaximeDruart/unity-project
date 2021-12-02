@@ -8,7 +8,7 @@ public class MainController : MonoBehaviour
 
     void Start()
     {
-        SceneController.Instance.OpenScene("Scene1");
+        // SceneController.Instance.OpenScene("Scene1");
     }
 
     // Update is called once per frame
